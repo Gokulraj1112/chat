@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Web Page</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .chat-box {
+      width: 400px;
+      margin: 0 auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: aqua;
+    }
+    .message {
+      margin: 5px 0;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-box" id="chatBox">
+    <!-- Chat messages will be displayed here -->
+  </div>
+  <div>
+    <input type="text" id="messageInput" placeholder="Type your message...">
+    <button id="sendButton">Send</button>
+  </div>
+
+  <script>
+    // Get DOM elements
+    const chatBox = document.getElementById('chatBox');
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+
+    // Function to add a new message to the chat
+    function addMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message';
+      messageDiv.textContent = message;
+      chatBox.appendChild(messageDiv);
+    }
+
+    // Event listener for sending messages
+    sendButton.addEventListener('click', () => {
+      const message = messageInput.value;
+      if (message) {
+        addMessage(message);
+        messageInput.value = '';
+      }
+    });
+
+    // Event listener for sending messages on Enter key press
+    messageInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        const message = messageInput.value;
+        if (message) {
+          addMessage(message);
+          messageInput.value = '';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
