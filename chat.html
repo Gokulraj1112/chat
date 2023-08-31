@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Web Page</title>
+  <title>Two-Person Chat</title>
   <style>
     /* Add your CSS styles here */
     body {
@@ -15,11 +15,11 @@
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      background-color: aqua;
+      height: 300px;
+      overflow: auto;
     }
     .message {
       margin: 5px 0;
-      
     }
   </style>
 </head>
@@ -44,13 +44,14 @@
       messageDiv.className = 'message';
       messageDiv.textContent = message;
       chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
     }
 
     // Event listener for sending messages
     sendButton.addEventListener('click', () => {
       const message = messageInput.value;
       if (message) {
-        addMessage(message);
+        addMessage(`You: ${message}`);
         messageInput.value = '';
       }
     });
@@ -60,7 +61,7 @@
       if (event.key === 'Enter') {
         const message = messageInput.value;
         if (message) {
-          addMessage(message);
+          addMessage(`You: ${message}`);
           messageInput.value = '';
         }
       }
